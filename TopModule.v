@@ -1,58 +1,56 @@
 `timescale 1ns/1ns
+
 module MIPS_Pipeline_Top (
     input clk,
     input reset
 );
 
     // ==============================================================================
-    // CABLES (WIRES) DE INTERCONEXIÓN ENTRE ETAPAS
+    // CABLES (WIRES) DE INTERCONEXIÓN
     // ==============================================================================
 
-    // --- Etapa IF (Instruction Fetch) ---
+    // --- Etapa IF ---
     wire [31:0] pc_in, pc_out, pc_plus_4;
     wire [31:0] instr;
     wire [31:0] branch_target_address;
-    wire pcsrc; // Selector para salto (Branch)
+    wire [31:0] jump_target_address;
+    wire pcsrc; 
 
-    // --- Etapa ID (Instruction Decode) ---
+    // --- Etapa ID ---
     wire [31:0] if_id_pc_next, if_id_instr;
     wire [31:0] read_data1, read_data2, sign_ext_imm;
-    wire [4:0]  rs_addr, rt_addr, rd_addr;
     
-    // Señales de Control puras (salida de la Control Unit)
+    // Señales de Control
     wire ctrl_reg_dst, ctrl_branch, ctrl_mem_read, ctrl_mem_to_reg;
     wire [1:0] ctrl_alu_op;
-    wire ctrl_mem_write, ctrl_alu_src, ctrl_reg_write;
+    wire ctrl_mem_write, ctrl_alu_src, ctrl_reg_write, ctrl_jump;
     
-    // Cables para el Branch en ID (si pasamos el branch por buffers)
+    // Cables ID/EX
     wire id_ex_branch, ex_mem_branch;
-
-    // --- Etapa EX (Execute) ---
-    // Señales que salen del buffer ID/EX
     wire id_ex_reg_write, id_ex_mem_to_reg, id_ex_mem_read, id_ex_mem_write;
     wire id_ex_reg_dst, id_ex_alu_src;
     wire [1:0] id_ex_alu_op;
     wire [31:0] id_ex_pc_next, id_ex_read_data1, id_ex_read_data2, id_ex_sign_ext;
     wire [4:0]  id_ex_rs, id_ex_rt, id_ex_rd;
-    
-    // Cables internos de EX
+    wire [5:0]  id_ex_opcode; 
+
+    // Cables EX
+    wire [31:0] shifted_imm; 
     wire [31:0] alu_in_a, alu_in_b_temp, alu_in_b_final;
     wire [31:0] alu_result;
     wire zero_flag;
     wire [4:0]  write_reg_addr_ex; 
     wire [3:0]  alu_control_signal;
-    wire [1:0]  forward_a, forward_b; // Del Forwarding Unit
+    wire [1:0]  forward_a, forward_b; 
 
-    // --- Etapa MEM (Memory) ---
-    // Señales que salen del buffer EX/MEM
+    // Cables MEM
     wire ex_mem_reg_write, ex_mem_mem_to_reg, ex_mem_mem_read, ex_mem_mem_write;
-    wire ex_mem_zero; // Flag Zero viajando
+    wire ex_mem_zero; 
     wire [31:0] ex_mem_alu_result, ex_mem_write_data;
     wire [4:0]  ex_mem_write_reg;
     wire [31:0] mem_read_data;
 
-    // --- Etapa WB (Write Back) ---
-    // Señales que salen del buffer MEM/WB
+    // Cables WB
     wire mem_wb_reg_write, mem_wb_mem_to_reg;
     wire [31:0] mem_wb_read_data, mem_wb_alu_result;
     wire [4:0]  mem_wb_write_reg;
@@ -61,19 +59,15 @@ module MIPS_Pipeline_Top (
     // ==============================================================================
     // ETAPA 1: INSTRUCTION FETCH (IF)
     // ==============================================================================
-
-    // Lógica básica de Branch: Si en la etapa MEM decidimos saltar
+    
     assign pcsrc = ex_mem_branch & ex_mem_zero; 
     
-    // Mux del PC (Branch vs PC+4)
-    // NOTA: 'branch_target_address' debería calcularse correctamente. 
-    // En este ejemplo simple asumimos que se calculó antes o se pasa el offset.
-    // Para simplificar, aquí usaremos pc_plus_4 por defecto si no hay lógica de cálculo de branch completa.
-    assign pc_in = (pcsrc) ? branch_target_address : pc_plus_4; 
+    assign pc_in = (ctrl_jump) ? jump_target_address : 
+                   (pcsrc)     ? branch_target_address : pc_plus_4; 
 
     ProgramCounter PC (
         .clk(clk), .reset(reset), 
-        .enable(1'b1), // SIEMPRE HABILITADO (Sin Hazard Unit)
+        .enable(1'b1), 
         .pc_in(pc_in), .pc_out(pc_out)
     );
 
@@ -86,7 +80,7 @@ module MIPS_Pipeline_Top (
     // ==============================================================================
     IF_ID_Buffer IF_ID (
         .clk(clk), .reset(reset), 
-        .enable(1'b1), // SIEMPRE HABILITADO (Sin Hazard Unit)
+        .enable(1'b1),
         .pc_next_in(pc_plus_4), .instr_in(instr),
         .pc_next_out(if_id_pc_next), .instr_out(if_id_instr)
     );
@@ -95,13 +89,18 @@ module MIPS_Pipeline_Top (
     // ETAPA 2: INSTRUCTION DECODE (ID)
     // ==============================================================================
 
-    // >>> HAZARD UNIT ELIMINADA AQUÍ <<<
-
     ControlUnit Control (
         .opcode(if_id_instr[31:26]),
-        .reg_dst(ctrl_reg_dst), .branch(ctrl_branch), .mem_read(ctrl_mem_read),
-        .mem_to_reg(ctrl_mem_to_reg), .alu_op(ctrl_alu_op), .mem_write(ctrl_mem_write),
-        .alu_src(ctrl_alu_src), .reg_write(ctrl_reg_write)
+        // Corrección de mayúsculas para coincidir con el módulo ControlUnit
+        .RegDst(ctrl_reg_dst),      
+        .Branch(ctrl_branch), 
+        .MemRead(ctrl_mem_read),
+        .MemToReg(ctrl_mem_to_reg), 
+        .ALUOp(ctrl_alu_op), 
+        .MemWrite(ctrl_mem_write),
+        .ALUSrc(ctrl_alu_src), 
+        .RegWrite(ctrl_reg_write),
+        .Jump(ctrl_jump) 
     );
 
     RegisterFile RegFile (
@@ -113,25 +112,24 @@ module MIPS_Pipeline_Top (
 
     SignExtend SignExt (.in(if_id_instr[15:0]), .out(sign_ext_imm));
 
+    assign jump_target_address = {if_id_pc_next[31:28], if_id_instr[25:0], 2'b00};
+
     // ==============================================================================
     // BUFFER ID/EX
     // ==============================================================================
     ID_EX_Buffer ID_EX (
         .clk(clk), .reset(reset),
-        // Control (Directo, sin MUX de Hazard)
-        .RegWrite_in(ctrl_reg_write),
-        .MemtoReg_in(ctrl_mem_to_reg),
-        .MemRead_in(ctrl_mem_read),
-        .MemWrite_in(ctrl_mem_write),
-        .RegDst_in(ctrl_reg_dst),
-        .ALUSrc_in(ctrl_alu_src),
-        .ALUOp_in(ctrl_alu_op),
-        .Branch_in(ctrl_branch), // Conectado directo
+        // Control
+        .RegWrite_in(ctrl_reg_write), .MemtoReg_in(ctrl_mem_to_reg),
+        .MemRead_in(ctrl_mem_read), .MemWrite_in(ctrl_mem_write),
+        .RegDst_in(ctrl_reg_dst), .ALUSrc_in(ctrl_alu_src),
+        .ALUOp_in(ctrl_alu_op), .Branch_in(ctrl_branch),
         
         // Datos
         .pc_next_in(if_id_pc_next), .read_data1_in(read_data1), .read_data2_in(read_data2),
         .sign_ext_in(sign_ext_imm),
         .rs_in(if_id_instr[25:21]), .rt_in(if_id_instr[20:16]), .rd_in(if_id_instr[15:11]),
+        .opcode_in(if_id_instr[31:26]), 
         
         // Salidas
         .RegWrite_out(id_ex_reg_write), .MemtoReg_out(id_ex_mem_to_reg),
@@ -141,14 +139,14 @@ module MIPS_Pipeline_Top (
         
         .pc_next_out(id_ex_pc_next), .read_data1_out(id_ex_read_data1), .read_data2_out(id_ex_read_data2),
         .sign_ext_out(id_ex_sign_ext),
-        .rs_out(id_ex_rs), .rt_out(id_ex_rt), .rd_out(id_ex_rd)
+        .rs_out(id_ex_rs), .rt_out(id_ex_rt), .rd_out(id_ex_rd),
+        .opcode_out(id_ex_opcode) 
     );
 
     // ==============================================================================
     // ETAPA 3: EXECUTE (EX)
     // ==============================================================================
 
-    // Forwarding Unit (Se mantiene para dependencias de datos básicas)
     ForwardingUnit Forwarding (
         .ID_EX_Rs(id_ex_rs), .ID_EX_Rt(id_ex_rt),
         .EX_MEM_Rd(ex_mem_write_reg), .EX_MEM_RegWrite(ex_mem_reg_write),
@@ -156,7 +154,6 @@ module MIPS_Pipeline_Top (
         .ForwardA(forward_a), .ForwardB(forward_b)
     );
 
-    // Muxes de Forwarding
     assign alu_in_a = (forward_a == 2'b10) ? ex_mem_alu_result :
                       (forward_a == 2'b01) ? result_to_write : id_ex_read_data1;
 
@@ -167,16 +164,24 @@ module MIPS_Pipeline_Top (
 
     assign write_reg_addr_ex = (id_ex_reg_dst) ? id_ex_rd : id_ex_rt;
 
-    // Cálculo de dirección de Branch (Shift + Add)
-    // Nota: Necesitas instanciar aquí tu ShiftLeft2 y Adder si quieres calcular el salto
-    // assign branch_target_address = id_ex_pc_next + (id_ex_sign_ext << 2); 
-    // Por simplicidad lo dejo como wire, asegúrate de conectarlo si usas branches.
+    ShiftLeft2 Shift_Branch (.in(id_ex_sign_ext), .out(shifted_imm));
+    
+    Adder Add_Branch (.a(id_ex_pc_next), .b(shifted_imm), .result(branch_target_address));
 
-    ALUControl ALU_Ctrl (.alu_op(id_ex_alu_op), .funct(id_ex_sign_ext[5:0]), .alu_control_out(alu_control_signal));
+    ALUControl ALU_Ctrl (
+        .alu_op(id_ex_alu_op), 
+        .funct(id_ex_sign_ext[5:0]), 
+        .opcode(id_ex_opcode), 
+        .alu_control_out(alu_control_signal)
+    );
 
+    // Asegúrate de que tu módulo ALU se llame 'module ALU' (mayúsculas)
     ALU Main_ALU (
-        .a(alu_in_a), .b(alu_in_b_final), .alu_control(alu_control_signal),
-        .result(alu_result), .zero(zero_flag)
+        .a(alu_in_a), 
+        .b(alu_in_b_final), 
+        .alu_control(alu_control_signal),
+        .result(alu_result), 
+        .zero(zero_flag)
     );
 
     // ==============================================================================

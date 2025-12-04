@@ -1,0 +1,237 @@
+# reading C:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini
+# Loading project yeminai
+# Compile of AluControl.v was successful.
+# Compile of BufferEX.v was successful.
+# Compile of BufferIFID.v was successful.
+# Compile of BufferMEM.v was successful.
+# Compile of BufferWB.v was successful.
+# Compile of Control.v was successful.
+# Compile of DataMemoy.v was successful.
+# Compile of Forward.v was successful.
+# Compile of InstructionMemory.v was successful.
+# Compile of Mux5.v was successful.
+# Compile of Mux32.v was successful.
+# Compile of pc.v was successful.
+# Compile of RegisterBank.v was successful.
+# Compile of ShiftLeft2.v was successful.
+# Compile of SignExtend.v was successful.
+# Compile of TopModule.v was successful.
+# Compile of Alu.v was successful.
+# 17 compiles, 0 failed with no errors.
+# Compile of AluControl.v was successful.
+# Compile of BufferEX.v was successful.
+# Compile of BufferIFID.v was successful.
+# Compile of BufferMEM.v was successful.
+# Compile of BufferWB.v was successful.
+# Compile of Control.v was successful.
+# Compile of DataMemoy.v was successful.
+# Compile of Forward.v was successful.
+# Compile of InstructionMemory.v was successful.
+# Compile of Mux5.v was successful.
+# Compile of Mux32.v was successful.
+# Compile of pc.v was successful.
+# Compile of RegisterBank.v was successful.
+# Compile of ShiftLeft2.v was successful.
+# Compile of SignExtend.v was successful.
+# Compile of TopModule.v was successful.
+# Compile of Alu.v was successful.
+# 17 compiles, 0 failed with no errors.
+vsim -gui work.MIPS_Pipeline_Top
+# vsim -gui work.MIPS_Pipeline_Top 
+# Start time: 19:08:38 on Dec 03,2025
+# Loading work.MIPS_Pipeline_Top
+# Loading work.ProgramCounter
+# ** Error: (vsim-3033) Instantiation of 'Adder' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS_Pipeline_Top File: C:/Users/damia/Desktop/ChipConBuffers/TopModule.v Line: 80
+#         Searched libraries:
+#             C:/Users/damia/Desktop/yeminai/work
+# Loading work.InstructionMemory
+# Loading work.IF_ID_Buffer
+# Loading work.ControlUnit
+# Loading work.RegisterFile
+# Loading work.SignExtend
+# Loading work.ID_EX_Buffer
+# Loading work.ForwardingUnit
+# Loading work.ALUControl
+# Loading work.ALU
+# Loading work.EX_MEM_Buffer
+# Loading work.DataMemory
+# Loading work.MEM_WB_Buffer
+# Error loading design
+# End time: 19:08:38 on Dec 03,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 9
+# Compile of ShiftLeft2.v was successful.
+# Compile of AluControl.v was successful.
+# Compile of BufferEX.v was successful.
+# Compile of BufferIFID.v was successful.
+# Compile of BufferMEM.v was successful.
+# Compile of BufferWB.v was successful.
+# Compile of Control.v was successful.
+# Compile of DataMemoy.v was successful.
+# Compile of Forward.v was successful.
+# Compile of InstructionMemory.v was successful.
+# Compile of Mux5.v was successful.
+# Compile of Mux32.v was successful.
+# Compile of pc.v was successful.
+# Compile of RegisterBank.v was successful.
+# Compile of ShiftLeft2.v was successful.
+# Compile of SignExtend.v was successful.
+# Compile of TopModule.v was successful.
+# Compile of Alu.v was successful.
+# Compile of Adder.v was successful.
+# 18 compiles, 0 failed with no errors.
+vsim -gui work.MIPS_Pipeline_Top
+# vsim -gui work.MIPS_Pipeline_Top 
+# Start time: 19:12:20 on Dec 03,2025
+# Loading work.MIPS_Pipeline_Top
+# Loading work.ProgramCounter
+# Loading work.Adder
+# Loading work.InstructionMemory
+# Loading work.IF_ID_Buffer
+# Loading work.ControlUnit
+# Loading work.RegisterFile
+# Loading work.SignExtend
+# Loading work.ID_EX_Buffer
+# Loading work.ForwardingUnit
+# Loading work.ALUControl
+# Loading work.ALU
+# Loading work.EX_MEM_Buffer
+# Loading work.DataMemory
+# Loading work.MEM_WB_Buffer
+add wave -position end  sim:/MIPS_Pipeline_Top/if_id_pc_next
+add wave -position end  sim:/MIPS_Pipeline_Top/pc_out
+add wave -position end  sim:/MIPS_Pipeline_Top/pc_in
+add wave -position end  sim:/MIPS_Pipeline_Top/pc_plus_4
+run
+# ** Warning: (vsim-7) Failed to open readmem file "programa.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/damia/Desktop/ChipConBuffers/InstructionMemory.v(10)
+#    Time: 0 ns  Iteration: 0  Instance: /MIPS_Pipeline_Top/InstrMem
+# ** Warning: (vsim-7) Failed to open readmem file "data.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/damia/Desktop/ChipConBuffers/DataMemoy.v(13)
+#    Time: 0 ns  Iteration: 0  Instance: /MIPS_Pipeline_Top/DataMem
+run
+run
+run
+run
+# Compile of AluControl.v was successful.
+# Compile of BufferEX.v was successful.
+# Compile of BufferIFID.v was successful.
+# Compile of BufferMEM.v was successful.
+# Compile of BufferWB.v was successful.
+# Compile of Control.v was successful.
+# Compile of DataMemoy.v was successful.
+# Compile of Forward.v was successful.
+# Compile of InstructionMemory.v was successful.
+# Compile of Mux5.v was successful.
+# Compile of Mux32.v was successful.
+# Compile of pc.v was successful.
+# Compile of RegisterBank.v was successful.
+# Compile of ShiftLeft2.v was successful.
+# Compile of SignExtend.v was successful.
+# Compile of TopModule.v was successful.
+# Compile of Alu.v was successful.
+# Compile of Adder.v was successful.
+# Compile of tb.v was successful.
+# 19 compiles, 0 failed with no errors.
+vsim -gui work.MIPS_TB
+# End time: 19:14:59 on Dec 03,2025, Elapsed time: 0:02:39
+# Errors: 0, Warnings: 8
+# vsim -gui work.MIPS_TB 
+# Start time: 19:14:59 on Dec 03,2025
+# Loading work.MIPS_TB
+# Loading work.MIPS_Pipeline_Top
+# Loading work.ProgramCounter
+# Loading work.Adder
+# Loading work.InstructionMemory
+# Loading work.IF_ID_Buffer
+# Loading work.ControlUnit
+# Loading work.RegisterFile
+# Loading work.SignExtend
+# Loading work.ID_EX_Buffer
+# Loading work.ForwardingUnit
+# Loading work.ALUControl
+# Loading work.ALU
+# Loading work.EX_MEM_Buffer
+# Loading work.DataMemory
+# Loading work.MEM_WB_Buffer
+add wave -position end  sim:/MIPS_TB/clk
+add wave -position end  sim:/MIPS_TB/reset
+add wave -position end  sim:/MIPS_TB/UUT/pc_out
+add wave -position end  sim:/MIPS_TB/UUT/alu_result
+run
+# ** Warning: (vsim-7) Failed to open readmem file "programa.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/damia/Desktop/ChipConBuffers/InstructionMemory.v(10)
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS_TB/UUT/InstrMem
+# ** Warning: (vsim-7) Failed to open readmem file "data.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/damia/Desktop/ChipConBuffers/DataMemoy.v(13)
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS_TB/UUT/DataMem
+# Iniciando Simulación MIPS Pipeline...
+# Reset desactivado. Procesador corriendo.
+run
+run
+run
+run
+run
+run
+run
+vsim work.MIPS_TB
+# End time: 19:20:03 on Dec 03,2025, Elapsed time: 0:05:04
+# Errors: 0, Warnings: 3
+# vsim work.MIPS_TB 
+# Start time: 19:20:03 on Dec 03,2025
+# Loading work.MIPS_TB
+# Loading work.MIPS_Pipeline_Top
+# Loading work.ProgramCounter
+# Loading work.Adder
+# Loading work.InstructionMemory
+# Loading work.IF_ID_Buffer
+# Loading work.ControlUnit
+# Loading work.RegisterFile
+# Loading work.SignExtend
+# Loading work.ID_EX_Buffer
+# Loading work.ForwardingUnit
+# Loading work.ALUControl
+# Loading work.ALU
+# Loading work.EX_MEM_Buffer
+# Loading work.DataMemory
+# Loading work.MEM_WB_Buffer
+add wave -position end  sim:/MIPS_TB/clk
+add wave -position end  sim:/MIPS_TB/reset
+add wave -position end  sim:/MIPS_TB/UUT/pc_out
+add wave -position end  sim:/MIPS_TB/UUT/alu_result
+run
+# ** Warning: (vsim-7) Failed to open readmem file "programa.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/damia/Desktop/ChipConBuffers/InstructionMemory.v(10)
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS_TB/UUT/InstrMem
+# ** Warning: (vsim-7) Failed to open readmem file "data.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/damia/Desktop/ChipConBuffers/DataMemoy.v(13)
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS_TB/UUT/DataMem
+# Iniciando Simulación MIPS Pipeline...
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Reset desactivado. Procesador corriendo.
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run -all
+# Simulación terminada.
+# ** Note: $stop    : C:/Users/damia/Desktop/ChipConBuffers/tb.v(40)
+#    Time: 210 ns  Iteration: 0  Instance: /MIPS_TB
+# Break in Module MIPS_TB at C:/Users/damia/Desktop/ChipConBuffers/tb.v line 40
+# End time: 19:40:19 on Dec 03,2025, Elapsed time: 0:20:16
+# Errors: 0, Warnings: 3

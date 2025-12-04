@@ -1,3 +1,5 @@
+
+`timescale 1ns/1ns
 module EX_MEM_Buffer (
     input clk,
     input reset,
