@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module MEM_WB_Buffer (
     input clk,
     input reset,

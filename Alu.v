@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module ALU (
     input [31:0] a,
     input [31:0] b,

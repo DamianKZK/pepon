@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module RegisterFile (
     input clk,
     input reg_write,

@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module MIPS_Pipeline_Top (
     input clk,
     input reset

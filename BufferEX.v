@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module ID_EX_Buffer (
     input clk,
     input reset,

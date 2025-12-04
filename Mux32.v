@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module Mux2to1 (
     input [31:0] in0,
     input [31:0] in1,

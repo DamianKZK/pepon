@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module Mux2to1_5bit (
     input [4:0] in0,
     input [4:0] in1,

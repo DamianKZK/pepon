@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module ControlUnit (
     input [5:0] opcode,
     output reg reg_dst,
