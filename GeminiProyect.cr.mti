@@ -1,0 +1,109 @@
+C:/Users/damia/Desktop/ChipConBuffers/BufferIFID.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/BufferIFID.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module IF_ID_Buffer
+
+Top level modules:
+	IF_ID_Buffer
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/BufferMEM.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/BufferMEM.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module EX_MEM_Buffer
+
+Top level modules:
+	EX_MEM_Buffer
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/TopModule.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/TopModule.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module MIPS_Pipeline_Top
+
+Top level modules:
+	MIPS_Pipeline_Top
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/SignExtend.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/SignExtend.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module SignExtend
+
+Top level modules:
+	SignExtend
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/InstructionMemory.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/InstructionMemory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module InstructionMemory
+
+Top level modules:
+	InstructionMemory
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/ShiftLeft2.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/ShiftLeft2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/AluControl.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/AluControl.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ALUControl
+
+Top level modules:
+	ALUControl
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/BufferWB.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/BufferWB.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module MEM_WB_Buffer
+
+Top level modules:
+	MEM_WB_Buffer
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/pc.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/pc.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ProgramCounter
+
+Top level modules:
+	ProgramCounter
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/BufferEX.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/BufferEX.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ID_EX_Buffer
+
+Top level modules:
+	ID_EX_Buffer
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/Mux5.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/Mux5.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Mux2to1_5bit
+
+Top level modules:
+	Mux2to1_5bit
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/Mux32.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/Mux32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Mux2to1
+
+Top level modules:
+	Mux2to1
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/DataMemoy.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/DataMemoy.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module DataMemory
+
+Top level modules:
+	DataMemory
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/Control.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/Control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/RegisterBank.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/RegisterBank.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module RegisterFile
+
+Top level modules:
+	RegisterFile
+
+} {} {}} C:/Users/damia/Desktop/ChipConBuffers/Alu.v {1 {vlog -work work -stats=none C:/Users/damia/Desktop/ChipConBuffers/Alu.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}}
